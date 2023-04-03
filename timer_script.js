@@ -12,7 +12,10 @@ let tSeconds = 0;
 function format(num) {
   num = parseInt(num);
   num = num.toString();
-  if (num < 10) num = "0" + num;
+
+  if (num < 10) {
+    num = "0" + num;
+  }
   return num;
 }
 
@@ -22,9 +25,11 @@ function pauseTimer() {
 
 function stopTimer() {
   clearInterval(timerInterval);
+
   tHours = 0;
   tMinutes = 0;
   tSeconds = 0;
+
   pTimer.innerText =
     format(tHours) + ":" + format(tMinutes) + ":" + format(tSeconds);
 }
@@ -33,7 +38,7 @@ function parseTime(inputTime) {
   let [stringHours, stringMinutes, stringSeconds] = inputTime.split(":");
   tHours = stringHours * SECONDS_IN_HOUR;
   tMinutes = stringMinutes * SECONDS_IN_MINUTE;
-  tSeconds = parseInt(stringSeconds) + tMinutes + tHours;
+  tSeconds = parseInt(stringSeconds, DECIMAL_DATA_TYPE) + tMinutes + tHours;
 }
 
 function startTimer() {
@@ -44,9 +49,11 @@ function startTimer() {
     tMinutes = Math.floor(
       (tSeconds - tHours * SECONDS_IN_HOUR) / SECONDS_IN_MINUTE
     );
-    if (tSeconds == 0) {
+
+    if (tSeconds === 0) {
       stopTimer();
     }
+
     pTimer.innerText =
       format(tHours) +
       ":" +
@@ -55,8 +62,10 @@ function startTimer() {
       format(
         tSeconds - tHours * SECONDS_IN_HOUR - tMinutes * SECONDS_IN_MINUTE
       );
+
     tSeconds--;
   }, MILISECONDS_IN_SECONDS);
+  input.remove();
 }
 
 pauseButtonTimer.addEventListener("click", pauseTimer);
