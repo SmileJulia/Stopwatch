@@ -1,7 +1,7 @@
-let input = document.createElement("input");
+const input = document.createElement("input");
 document.getElementsByTagName("div")[4].appendChild(input);
 
-let pTimer = document.createElement("p");
+const pTimer = document.createElement("p");
 document.getElementsByTagName("div")[4].appendChild(pTimer);
 
 let timerInterval;
@@ -35,7 +35,7 @@ function stopTimer() {
 }
 
 function parseTime(inputTime) {
-  let [stringHours, stringMinutes, stringSeconds] = inputTime.split(":");
+  const [stringHours, stringMinutes, stringSeconds] = inputTime.split(":");
   tHours = stringHours * SECONDS_IN_HOUR;
   tMinutes = stringMinutes * SECONDS_IN_MINUTE;
   tSeconds = parseInt(stringSeconds, DECIMAL_DATA_TYPE) + tMinutes + tHours;
